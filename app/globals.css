@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&family=Manrope:wght@300;400;500;600&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #722f37;
+  --primary-foreground: #ffffff;
+
+  --secondary: #606c38;
+  --secondary-foreground: #fefae0;
+
+  --accent: #dda15e;
+  --accent-foreground: #561922;
+
+  --background: #fefae0;
+  --foreground: #000000;
+
+  --muted: #f8f4db;
+  --muted-foreground: #561922;
+
+  --border: #d8c1c2;
+  --ring: #dda15e;
+
+  --destructive: #92484f;
+
+  --card: #ffffff;
+  --card-foreground: #000000;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+}
+
+::selection {
+  background: rgba(221, 161, 94, 0.35);
+}
+
+.container-page {
+  @apply mx-auto w-full max-w-6xl px-6;
+}
+
+/* Premium “paper” surfaces (no-line rule: avoid borders; use tonal shifts) */
+.surface {
+  background: var(--background);
+}
+
+.surface-low {
+  background: var(--muted);
+}
+
+.surface-card {
+  background: var(--card);
+}
+
+/* Hero overlay helper */
+.hero-overlay {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.72) 0%,
+    rgba(0, 0, 0, 0.45) 45%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+}
