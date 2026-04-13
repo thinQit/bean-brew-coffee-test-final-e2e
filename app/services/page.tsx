@@ -1,165 +1,149 @@
 "use client";
 
 import { motion } from "framer-motion";
-import HeroMinimal from "@/components/blocks/HeroMinimal";
-import FeaturesGrid from "@/components/blocks/FeaturesGrid";
-import PricingTable from "@/components/blocks/PricingTable";
-import CTASplit from "@/components/blocks/CTASplit";
+import HeroSpotlight from "@/components/blocks/HeroSpotlight";
 import HoverEffect from "@/components/blocks/HoverEffect";
+import MovingBorder from "@/components/blocks/MovingBorder";
+import CTAGlass from "@/components/blocks/CTAGlass";
 
-const sectionAnim = {
-  initial: { opacity: 0, y: 18 },
-  whileInView: { opacity: 1, y: 0 },
-  transition: { duration: 0.7, ease: "easeOut" },
-  viewport: { once: true, amount: 0.25 }
+const section = {
+  hidden: { opacity: 0, y: 18 },
+  visible: { opacity: 1, y: 0 }
 };
 
 export default function ServicesPage() {
   return (
-    <div className="surface">
-      <div className="relative">
-        <div className="absolute inset-0 hero-overlay pointer-events-none" />
-        <HeroMinimal
-          title="Menu & Services"
-          subtitle="Espresso, slow coffee, pastries, and premium coffee service for events and offices."
-          primaryCta={{ label: "Catering", href: "#catering" }}
-          secondaryCta={{ label: "Contact", href: "/contact" }}
-          image={{ src: "/images/product-3.png", alt: "Espresso and latte art" }}
-          theme="dark"
-          className="text-white"
-        />
-      </div>
+    <main className="bg-[#FEFAE0]">
+      <HeroSpotlight
+        title="Menu & Services"
+        subtitle="Seasonal espresso, single-origin pour-over, pastries, and programs for teams and events."
+        image={{ src: "/images/product-1.png", alt: "Latte art close-up" }}
+        primaryCta={{ label: "See Pricing", href: "/pricing" }}
+        secondaryCta={{ label: "Contact", href: "/contact" }}
+      />
 
-      <motion.section {...sectionAnim} className="surface-low py-28">
-        <div className="container-page">
-          <FeaturesGrid
-            eyebrow="In the Café"
-            title="A focused menu, executed beautifully"
-            description="We keep the lineup tight so every drink is dialed and consistent."
-            features={[
+      <motion.section
+        className="bg-[#F8F4DB]"
+        variants={section}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.25 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <div className="mx-auto max-w-6xl px-6 py-16">
+          <div className="mb-10">
+            <p className="text-xs tracking-[0.18em] uppercase text-[#462800] font-body">
+              Café menu
+            </p>
+            <h2 className="mt-3 text-3xl md:text-4xl font-heading text-[#1D1C0D]">
+              Built around origin character
+            </h2>
+          </div>
+
+          <HoverEffect
+            items={[
               {
                 title: "Espresso & Milk Drinks",
                 description:
-                  "Balanced, sweet espresso with carefully textured milk.",
-                icon: "cup"
+                  "House espresso, cappuccino, latte, cortado—dialed for sweetness and balance.",
+                link: "/contact"
               },
               {
                 title: "Pour-Over Bar",
                 description:
-                  "Single-origin rotations brewed to highlight clarity and aroma.",
-                icon: "droplet"
+                  "Single-origin V60 with curated recipes—clean, aromatic, and expressive.",
+                link: "/contact"
               },
               {
-                title: "Batch Brew",
-                description:
-                  "Fresh, clean, and fast—without sacrificing nuance.",
-                icon: "clock"
+                title: "Cold Coffee",
+                description: "Cold brew reserve, iced latte, seasonal specials.",
+                link: "/contact"
               },
               {
-                title: "Seasonal Pastries",
-                description:
-                  "Pairings designed for roast notes: cocoa, citrus, spice.",
-                icon: "cookie"
+                title: "Pastry Pairings",
+                description: "Croissants, buns, and rotating local bakes—made for coffee.",
+                link: "/contact"
               }
             ]}
           />
         </div>
       </motion.section>
 
-      <motion.section {...sectionAnim} className="surface py-28" id="catering">
-        <div className="container-page">
-          <HoverEffect
-            eyebrow="Catering & Office Coffee"
-            title="Coffee service that feels premium"
-            description="From meetings to weddings, we bring the brew bar calm wherever you are."
-            items={[
-              {
-                title: "Event Brew Bar",
-                description:
-                  "On-site espresso + pour-over service with a curated menu.",
-                image: "/images/product-2.png",
-                href: "/contact"
-              },
-              {
-                title: "Office Drop-Off",
-                description:
-                  "Recurring batch brew + pastries for teams and studios.",
-                image: "/images/product-2.png",
-                href: "/contact"
-              },
-              {
-                title: "Bean Subscriptions",
-                description:
-                  "Weekly or bi-weekly single-origin rotations for home brewers.",
-                image: "/images/product-1.png",
-                href: "/pricing"
-              }
-            ]}
-          />
+      <motion.section
+        className="bg-[#FEFAE0]"
+        variants={section}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.25 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <div className="mx-auto max-w-6xl px-6 py-16">
+          <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
+            <div className="rounded-2xl bg-background p-4">
+              <img
+                src="/images/product-2.png"
+                alt="Coffee bags on a shelf"
+                className="h-72 w-full rounded-xl object-cover"
+              />
+            </div>
+
+            <div>
+              <p className="text-xs tracking-[0.18em] uppercase text-[#462800] font-body">
+                Roastery programs
+              </p>
+              <h2 className="mt-3 text-3xl md:text-4xl font-heading text-[#1D1C0D]">
+                Subscriptions, wholesale, and events
+              </h2>
+              <p className="mt-4 text-[#462800]">
+                Keep your team stocked, elevate your café program, or bring a premium brew bar to
+                your next event.
+              </p>
+
+              <div className="mt-6">
+                <MovingBorder
+                  items={[
+                    {
+                      title: "Bean Subscription",
+                      description: "Fresh drops delivered on your schedule—filter or espresso.",
+                      icon: "Package"
+                    },
+                    {
+                      title: "Wholesale Supply",
+                      description: "Training, recipes, and consistent roast profiles for partners.",
+                      icon: "Store"
+                    },
+                    {
+                      title: "Catering & Pop-Ups",
+                      description: "Mobile espresso bar for launches, weddings, and team days.",
+                      icon: "Calendar"
+                    }
+                  ]}
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </motion.section>
 
-      <motion.section {...sectionAnim} className="surface-low py-28">
-        <div className="container-page">
-          <PricingTable
-            eyebrow="Popular Bundles"
-            title="Simple options for teams and events"
-            description="Transparent packages—customize with add-ons after you reach out."
-            plans={[
-              {
-                name: "Studio Starter",
-                price: "$85",
-                interval: "per drop-off",
-                description: "Perfect for small teams.",
-                features: ["2L batch brew", "12 pastries", "Cups + napkins"],
-                cta: { label: "Book", href: "/contact" },
-                highlighted: false
-              },
-              {
-                name: "Office Ritual",
-                price: "$220",
-                interval: "per week",
-                description: "Our most popular recurring setup.",
-                features: [
-                  "2x weekly drop-offs",
-                  "4L batch brew total",
-                  "24 pastries",
-                  "Seasonal rotation"
-                ],
-                cta: { label: "Start", href: "/contact" },
-                highlighted: true
-              },
-              {
-                name: "Event Brew Bar",
-                price: "$650",
-                interval: "starting",
-                description: "On-site espresso + pour-over.",
-                features: [
-                  "2-hour service",
-                  "Barista team",
-                  "Curated menu",
-                  "Add-ons available"
-                ],
-                cta: { label: "Get a Quote", href: "/contact" },
-                highlighted: false
-              }
-            ]}
+      <motion.section
+        className="bg-[#F8F4DB]"
+        variants={section}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.25 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <div className="mx-auto max-w-6xl px-6 py-16">
+          <CTAGlass
+            eyebrow="Need a recommendation?"
+            title="Tell us what you like—we’ll match a roast"
+            description="Chocolatey and classic? Bright and fruity? We’ll guide you to the right bag and brew method."
+            primaryCta={{ label: "Contact Us", href: "/contact" }}
+            secondaryCta={{ label: "View Pricing", href: "/pricing" }}
+            image={{ src: "/images/product-1.png", alt: "Pastry and coffee pairing" }}
           />
         </div>
       </motion.section>
-
-      <motion.section {...sectionAnim} className="surface py-28">
-        <div className="container-page">
-          <CTASplit
-            eyebrow="Ready to plan?"
-            title="Tell us your date, guest count, and vibe"
-            description="We’ll recommend a menu and service style that fits your event or office."
-            primaryCta={{ label: "Contact", href: "/contact" }}
-            secondaryCta={{ label: "Pricing", href: "/pricing" }}
-            image={{ src: "/images/product-1.png", alt: "Coffee setup on a counter" }}
-          />
-        </div>
-      </motion.section>
-    </div>
+    </main>
   );
 }

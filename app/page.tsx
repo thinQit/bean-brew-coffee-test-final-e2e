@@ -2,258 +2,299 @@
 
 import { motion } from "framer-motion";
 
-import HeroMinimal from "@/components/blocks/HeroMinimal";
+import HeroSpotlight from "@/components/blocks/HeroSpotlight";
 import FeaturesGrid from "@/components/blocks/FeaturesGrid";
 import BentoGrid from "@/components/blocks/BentoGrid";
-import StatsCounter from "@/components/blocks/StatsCounter";
+import ParallaxScroll from "@/components/blocks/ParallaxScroll";
 import TestimonialsGrid from "@/components/blocks/TestimonialsGrid";
-import CTASplit from "@/components/blocks/CTASplit";
-import InfiniteMovingCards from "@/components/blocks/InfiniteMovingCards";
 import FAQAccordion from "@/components/blocks/FAQAccordion";
+import CTAGlass from "@/components/blocks/CTAGlass";
 
-const sectionAnim = {
-  initial: { opacity: 0, y: 18 },
-  whileInView: { opacity: 1, y: 0 },
-  transition: { duration: 0.7, ease: "easeOut" },
-  viewport: { once: true, amount: 0.25 }
+const section = {
+  hidden: { opacity: 0, y: 18 },
+  visible: { opacity: 1, y: 0 }
 };
 
 export default function HomePage() {
   return (
-    <div className="surface">
-      {/* HERO */}
-      <div className="relative">
-        <div className="absolute inset-0 hero-overlay pointer-events-none" />
-        <HeroMinimal
-          title="Awaken Your Sensory Soul"
-          subtitle="Bean & Brew is a premium roastery and café—single-origin lots, meticulous roast profiles, and a warm editorial experience in every cup."
-          primaryCta={{ label: "Explore the Menu", href: "/services" }}
-          secondaryCta={{ label: "Visit Us", href: "/contact#visit" }}
-          image={{
-            src: "/images/hero.png",
-            alt: "Pour-over coffee in warm light"
-          }}
-          theme="dark"
-          className="text-white"
-        />
-      </div>
+    <main className="bg-[#FEFAE0]">
+      <HeroSpotlight
+        title="Crafted for the Intentional Ritual"
+        subtitle="Small-batch roasts, seasonal espresso, and tasting notes that read like an editorial—because your morning deserves a little ceremony."
+        image={{
+          src: "/images/hero.png",
+          alt: "Bean & Brew Coffee hero — espresso and beans"
+        }}
+        primaryCta={{ label: "Explore the Menu", href: "/services" }}
+        secondaryCta={{ label: "Our Story", href: "/about" }}
+      />
 
-      {/* Features */}
       <motion.section
-        {...sectionAnim}
-        className="surface-low py-28"
-        aria-label="Signature selections"
+        className="bg-[#F8F4DB]"
+        variants={section}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.25 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        <div className="container-page">
+        <div className="mx-auto max-w-6xl px-6 py-16">
+          <div className="mb-10">
+            <p className="text-xs tracking-[0.18em] uppercase text-[#462800] font-body">
+              Small-batch standards
+            </p>
+            <h2 className="mt-3 text-3xl md:text-4xl font-heading text-[#1D1C0D]">
+              A premium roastery experience—without the pretense
+            </h2>
+          </div>
+
           <FeaturesGrid
-            eyebrow="Signature Selections"
-            title="A curated menu built like a tasting flight"
-            description="From espresso to slow coffee, every recipe is designed to highlight origin character—floral, cocoa, citrus, and spice."
-            features={[
+            items={[
               {
-                title: "Single-Origin Rotations",
+                title: "Seasonal Espresso",
                 description:
-                  "Seasonal lots roasted weekly for clarity and sweetness.",
-                icon: "sparkles"
+                  "Rotating single-origin and blend espresso designed for sweetness, clarity, and crema.",
+                icon: "Coffee"
               },
               {
-                title: "Milk Crafted, Not Masked",
+                title: "Tasting Notes, Not Buzzwords",
                 description:
-                  "Textured milk and balanced ratios that keep the coffee in the lead.",
-                icon: "cup"
-              },
-              {
-                title: "House Pastry Pairings",
-                description:
-                  "Warm, buttery pairings designed to complement roast notes.",
-                icon: "cookie"
+                  "Every bag ships with a concise flavor map—fruit, florals, chocolate, and finish.",
+                icon: "Sparkles"
               },
               {
                 title: "Brew Bar Guidance",
                 description:
-                  "Dial-in tips and brew recipes you can take home.",
-                icon: "book"
+                  "Dial-in help for V60, AeroPress, espresso, and batch brew—tailored to your gear.",
+                icon: "Wand2"
+              },
+              {
+                title: "Ethical Sourcing",
+                description:
+                  "Relationship-forward sourcing with transparent lots and traceable processing.",
+                icon: "Leaf"
               }
             ]}
           />
         </div>
       </motion.section>
 
-      {/* Bento editorial */}
       <motion.section
-        {...sectionAnim}
-        className="surface py-28"
-        aria-label="Editorial highlights"
+        className="bg-[#FEFAE0]"
+        variants={section}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.25 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        <div className="container-page">
-          <BentoGrid
-            eyebrow="The Art of the Roast"
-            title="Intentional craft, from green to cup"
-            description="We roast to preserve origin integrity—developing sweetness without flattening nuance."
-            items={[
-              {
-                title: "Roast Profiles",
-                description:
-                  "Balanced development for sweetness, clarity, and a clean finish.",
-                image: "/images/product-2.png"
-              },
-              {
-                title: "Origin Stories",
-                description:
-                  "Traceable sourcing and transparent relationships with producers.",
-                image: "/images/product-3.png"
-              },
-              {
-                title: "Brew Methods",
-                description:
-                  "Espresso, batch, pour-over—each tuned to highlight character.",
-                image: "/images/product-1.png"
-              },
-              {
-                title: "Seasonal Pairings",
-                description:
-                  "Pastries and small bites designed for coffee’s flavor arc.",
-                image: "/images/product-3.png"
-              }
+        <div className="mx-auto max-w-6xl px-6 py-16">
+          <div className="grid gap-10 lg:grid-cols-2 lg:items-end">
+            <div>
+              <p className="text-xs tracking-[0.18em] uppercase text-[#462800] font-body">
+                Signature menu
+              </p>
+              <h2 className="mt-3 text-3xl md:text-4xl font-heading text-[#1D1C0D]">
+                Espresso, pour-over, and pastry pairings
+              </h2>
+              <p className="mt-4 text-[#462800]">
+                From bright, fruit-forward filter to syrupy chocolate espresso—our menu is built
+                around origin character and roast precision.
+              </p>
+            </div>
+            <div className="relative">
+              <div className="rounded-2xl bg-background p-4">
+                <img
+                  src="/images/product-1.png"
+                  alt="Featured latte art"
+                  className="h-64 w-full rounded-xl object-cover"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-10">
+            <BentoGrid
+              items={[
+                {
+                  title: "The House Espresso",
+                  description: "Caramel sweetness, cocoa finish, silky body.",
+                  image: "/images/product-2.png"
+                },
+                {
+                  title: "Single-Origin Pour-Over",
+                  description: "Clean cup, sparkling acidity, floral aromatics.",
+                  image: "/images/product-3.png"
+                },
+                {
+                  title: "Cold Brew Reserve",
+                  description: "Slow-steeped, low bitterness, toasted sugar notes.",
+                  image: "/images/product-2.png"
+                },
+                {
+                  title: "Butter Croissant",
+                  description: "Laminated, golden, and made for espresso.",
+                  image: "/images/product-2.png"
+                }
+              ]}
+            />
+          </div>
+        </div>
+      </motion.section>
+
+      <motion.section
+        className="bg-[#F8F4DB]"
+        variants={section}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <div className="mx-auto max-w-6xl px-6 py-16">
+          <div className="mb-10">
+            <p className="text-xs tracking-[0.18em] uppercase text-[#462800] font-body">
+              The ritual, in frames
+            </p>
+            <h2 className="mt-3 text-3xl md:text-4xl font-heading text-[#1D1C0D]">
+              A space designed for aroma, light, and conversation
+            </h2>
+          </div>
+
+          <ParallaxScroll
+            images={[
+              "/images/portfolio-1.png",
+              "/images/portfolio-2.png",
+              "/images/portfolio-3.png",
+              "/images/portfolio-4.png",
+              "/images/portfolio-5.png",
+              "/images/portfolio-6.png"
             ]}
           />
         </div>
       </motion.section>
 
-      {/* Social proof / logos */}
       <motion.section
-        {...sectionAnim}
-        className="surface-low py-28"
-        aria-label="As seen in"
+        className="bg-[#FEFAE0]"
+        variants={section}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.25 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        <div className="container-page">
-          <InfiniteMovingCards
-            title="Loved by locals, praised by travelers"
-            subtitle="A few places our guests say they discovered us."
-            items={[
-              { name: "The Weekend Edit", quote: "A roastery with magazine-level calm." },
-              { name: "City Bites", quote: "Espresso that tastes like chocolate and citrus." },
-              { name: "Roast Journal", quote: "A thoughtful menu with real origin clarity." },
-              { name: "Neighborhood Notes", quote: "Warm service, beautiful pours." },
-              { name: "The Daily Cup", quote: "A premium café experience without pretense." }
-            ]}
-          />
-        </div>
-      </motion.section>
+        <div className="mx-auto max-w-6xl px-6 py-16">
+          <div className="mb-10">
+            <p className="text-xs tracking-[0.18em] uppercase text-[#462800] font-body">
+              Loved by regulars
+            </p>
+            <h2 className="mt-3 text-3xl md:text-4xl font-heading text-[#1D1C0D]">
+              The kind of coffee you remember
+            </h2>
+          </div>
 
-      {/* Stats */}
-      <motion.section
-        {...sectionAnim}
-        className="surface py-28"
-        aria-label="Roastery stats"
-      >
-        <div className="container-page">
-          <StatsCounter
-            eyebrow="By the Numbers"
-            title="Small-batch precision, daily hospitality"
-            description="We keep it focused: fewer items, better execution, fresher coffee."
-            stats={[
-              { label: "Roast batches per week", value: 18 },
-              { label: "Seasonal origins per year", value: 24 },
-              { label: "Dial-ins per day", value: 30 },
-              { label: "Guest satisfaction", value: 98, suffix: "%" }
-            ]}
-          />
-        </div>
-      </motion.section>
-
-      {/* Testimonials */}
-      <motion.section
-        {...sectionAnim}
-        className="surface-low py-28"
-        aria-label="Guest stories"
-      >
-        <div className="container-page">
           <TestimonialsGrid
-            eyebrow="Guest Stories"
-            title="A café that feels like a ritual"
-            description="A few words from people who made Bean & Brew part of their morning."
-            testimonials={[
+            items={[
               {
                 name: "Ava M.",
-                title: "Regular",
+                role: "Pour-over devotee",
                 quote:
-                  "The pour-over is consistently bright and sweet. It’s the first café where I can taste the origin notes clearly.",
-                image: "/images/product-1.png"
+                  "The tasting notes are spot-on. I can actually taste the peach and jasmine they describe.",
+                avatar: "/images/avatar-1.png"
               },
               {
                 name: "Jordan K.",
-                title: "Traveler",
+                role: "Espresso daily",
                 quote:
-                  "Beautiful space, calm energy, and the espresso is dialed. I came back twice in one weekend.",
-                image: "/images/product-3.png"
+                  "Perfect balance—sweet, rich, and never burnt. The baristas helped me dial in my home setup too.",
+                avatar: "/images/avatar-2.png"
               },
               {
                 name: "Sam R.",
-                title: "Home Brewer",
+                role: "Weekend regular",
                 quote:
-                  "They explained grind and ratio without being pushy. My home brews improved immediately.",
-                image: "/images/product-1.png"
+                  "It feels like a boutique hotel lobby but for coffee. Calm, warm, and intentional.",
+                avatar: "/images/avatar-3.png"
               }
             ]}
           />
         </div>
       </motion.section>
 
-      {/* FAQ */}
       <motion.section
-        {...sectionAnim}
-        className="surface py-28"
-        aria-label="FAQ"
+        className="bg-[#F8F4DB]"
+        variants={section}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.25 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        <div className="container-page">
-          <FAQAccordion
-            eyebrow="FAQ"
-            title="Everything you need to know"
-            description="Quick answers about beans, brewing, and visiting."
-            items={[
-              {
-                question: "Do you roast on-site?",
-                answer:
-                  "We roast in small batches and release weekly rotations. Ask the bar for what’s freshest today."
-              },
-              {
-                question: "Can you grind beans for my brewer?",
-                answer:
-                  "Yes—tell us your brew method (V60, Chemex, French press, espresso) and we’ll match the grind."
-              },
-              {
-                question: "Do you offer dairy alternatives?",
-                answer:
-                  "Yes. We offer oat and almond options, and we tune recipes so the coffee still shines."
-              },
-              {
-                question: "Do you do catering or office coffee?",
-                answer:
-                  "We do. See Services for catering and recurring office drop-offs."
-              }
-            ]}
-          />
+        <div className="mx-auto max-w-6xl px-6 py-16">
+          <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
+            <div>
+              <p className="text-xs tracking-[0.18em] uppercase text-[#462800] font-body">
+                Quick answers
+              </p>
+              <h2 className="mt-3 text-3xl md:text-4xl font-heading text-[#1D1C0D]">
+                FAQs for first-time visitors
+              </h2>
+              <p className="mt-4 text-[#462800]">
+                Want a recommendation? Tell us what you like (chocolatey, fruity, floral) and we’ll
+                guide you.
+              </p>
+
+              <div className="mt-8 rounded-2xl bg-background p-4">
+                <img
+                  src="/images/product-2.png"
+                  alt="Coffee bag and tasting notes card"
+                  className="h-56 w-full rounded-xl object-cover"
+                />
+              </div>
+            </div>
+
+            <FAQAccordion
+              items={[
+                {
+                  question: "Do you roast on-site?",
+                  answer:
+                    "We roast in small batches and feature fresh drops weekly. Ask for the roast date and we’ll help you choose based on brew method."
+                },
+                {
+                  question: "Can you grind beans for my brewer?",
+                  answer:
+                    "Yes—tell us your setup (V60, Chemex, AeroPress, espresso, drip) and we’ll grind accordingly."
+                },
+                {
+                  question: "Do you offer dairy-free options?",
+                  answer:
+                    "Absolutely. Oat and almond are always available, and we can recommend drinks that shine with alternative milks."
+                },
+                {
+                  question: "Do you do subscriptions or wholesale?",
+                  answer:
+                    "Yes. Subscriptions and wholesale programs are listed on the Pricing page, and we can tailor volume to your needs."
+                }
+              ]}
+            />
+          </div>
         </div>
       </motion.section>
 
-      {/* CTA */}
       <motion.section
-        {...sectionAnim}
-        className="surface-low py-28"
-        aria-label="Call to action"
+        className="bg-[#FEFAE0]"
+        variants={section}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.25 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        <div className="container-page">
-          <CTASplit
-            eyebrow="Visit Bean & Brew"
-            title="Your next favorite cup is waiting"
-            description="Stop by for espresso, slow coffee, and seasonal pastries—or reach out for catering and office coffee."
-            primaryCta={{ label: "Get Directions", href: "/contact#visit" }}
-            secondaryCta={{ label: "Contact Us", href: "/contact" }}
-            image={{ src: "/images/product-1.png", alt: "Coffee and pastry on a table" }}
+        <div className="mx-auto max-w-6xl px-6 py-16">
+          <CTAGlass
+            eyebrow="Ready to taste the difference?"
+            title="Visit Bean & Brew or start a subscription"
+            description="Drop in for seasonal espresso, take home a fresh roast, or set your week on autopilot with curated deliveries."
+            primaryCta={{ label: "Contact & Hours", href: "/contact" }}
+            secondaryCta={{ label: "See Pricing", href: "/pricing" }}
+            image={{ src: "/images/product-3.png", alt: "Coffee bar and cups" }}
           />
         </div>
       </motion.section>
-    </div>
+    </main>
   );
 }

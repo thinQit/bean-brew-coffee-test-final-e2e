@@ -1,6 +1,6 @@
 "use client";
 
-export function TeamGrid(props: any) {
+export function CTAGlass(props: any) {
   return (
     <section className="w-full py-16 px-4 md:px-8">
       <div className="max-w-6xl mx-auto">
@@ -11,4 +11,4 @@ export function TeamGrid(props: any) {
     </section>
   );
 }
-export default TeamGrid;
+export default CTAGlass;

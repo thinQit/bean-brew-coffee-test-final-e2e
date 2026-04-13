@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
+import { Noto_Serif, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
-import { Noto_Serif, Manrope } from "next/font/google";
 
 import NavbarGlass from "@/components/blocks/NavbarGlass";
 import FooterMultiColumn from "@/components/blocks/FooterMultiColumn";
@@ -8,36 +8,31 @@ import FooterMultiColumn from "@/components/blocks/FooterMultiColumn";
 const heading = Noto_Serif({
   subsets: ["latin"],
   variable: "--font-heading",
-  display: "swap"
+  weight: ["400", "600", "700"]
 });
 
-const body = Manrope({
+const body = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-body",
-  display: "swap"
+  weight: ["300", "400", "500", "600", "700"]
 });
 
 export const metadata: Metadata = {
-  title: "Bean & Brew Coffee",
+  title: "Bean & Brew Coffee — Premium Small-Batch Roastery",
   description:
-    "Premium coffee roastery and café. Seasonal single-origin beans, signature espresso, and a warm editorial experience."
+    "Bean & Brew Coffee is a premium coffee roastery crafting small-batch beans, seasonal espresso, and a curated ritual in every cup."
 };
 
-export default function RootLayout({
-  children
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${heading.variable} ${body.variable}`}>
-      <body className="surface">
-        {/* Navbar must be full width */}
+      <body>
+        {/* Navbar must be full width and fixed */}
         <div className="fixed top-0 left-0 right-0 w-full z-50">
           <NavbarGlass
             brand={{
               name: "Bean & Brew",
-              tagline: "Premium Roastery",
-              href: "/"
+              tagline: "Premium Roastery"
             }}
             links={[
               { label: "About", href: "/about" },
@@ -53,15 +48,14 @@ export default function RootLayout({
           />
         </div>
 
-        {/* Page content offset for fixed nav */}
-        <main className="pt-24">{children}</main>
+        {/* Offset for fixed nav */}
+        <div className="pt-20">{children}</div>
 
         <FooterMultiColumn
           brand={{
             name: "Bean & Brew Coffee",
             description:
-              "A premium coffee roastery and café—crafted with patience, sourced with care, served with warmth.",
-            image: "/images/product-1.png"
+              "A premium small-batch roastery and café experience—crafted for the intentional ritual."
           }}
           columns={[
             {
@@ -77,25 +71,23 @@ export default function RootLayout({
               title: "Visit",
               links: [
                 { label: "Contact", href: "/contact" },
-                { label: "Hours & Location", href: "/contact#visit" },
-                { label: "Catering", href: "/services#catering" }
+                { label: "Hours & Location", href: "/contact" },
+                { label: "Catering", href: "/services" }
               ]
             },
             {
-              title: "Social",
+              title: "Roastery",
               links: [
-                { label: "Instagram", href: "/contact#social" },
-                { label: "Newsletter", href: "/contact#newsletter" }
+                { label: "Subscriptions", href: "/pricing" },
+                { label: "Wholesale", href: "/services" },
+                { label: "Seasonal Releases", href: "/portfolio" }
               ]
             }
           ]}
-          bottom={{
-            copyright: `© ${new Date().getFullYear()} Bean & Brew Coffee. All rights reserved.`,
-            links: [
-              { label: "Privacy", href: "/contact#privacy" },
-              { label: "Terms", href: "/contact#terms" }
-            ]
-          }}
+          bottomLinks={[
+            { label: "Privacy", href: "/contact" },
+            { label: "Terms", href: "/contact" }
+          ]}
         />
       </body>
     </html>

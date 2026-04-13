@@ -1,14 +1,50 @@
-"use client";
+import * as React from "react";
 
-export function ContactForm(props: any) {
+type ContactFormProps = {
+  className?: string;
+};
+
+export default function ContactForm({ className }: ContactFormProps) {
   return (
-    <section className="w-full py-16 px-4 md:px-8">
-      <div className="max-w-6xl mx-auto">
-        {props.headline && <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">{props.headline}</h2>}
-        {props.subheadline && <p className="text-lg text-muted-foreground mb-8 max-w-2xl">{props.subheadline}</p>}
-        {props.children}
-      </div>
-    </section>
+    <form
+      className={className}
+      style={{
+        display: "grid",
+        gap: "0.75rem",
+        padding: "1rem",
+        border: "1px solid rgba(0,0,0,0.1)",
+        borderRadius: 12,
+        maxWidth: 640,
+      }}
+      onSubmit={(e) => {
+        e.preventDefault();
+      }}
+    >
+      <label style={{ display: "grid", gap: 6 }}>
+        <span>Name</span>
+        <input name="name" required style={{ padding: "0.6rem 0.75rem" }} />
+      </label>
+      <label style={{ display: "grid", gap: 6 }}>
+        <span>Email</span>
+        <input name="email" type="email" required style={{ padding: "0.6rem 0.75rem" }} />
+      </label>
+      <label style={{ display: "grid", gap: 6 }}>
+        <span>Message</span>
+        <textarea name="message" required rows={5} style={{ padding: "0.6rem 0.75rem" }} />
+      </label>
+      <button
+        type="submit"
+        style={{
+          padding: "0.7rem 0.9rem",
+          borderRadius: 10,
+          border: "1px solid rgba(0,0,0,0.15)",
+          background: "black",
+          color: "white",
+          cursor: "pointer",
+        }}
+      >
+        Send
+      </button>
+    </form>
   );
 }
-export default ContactForm;

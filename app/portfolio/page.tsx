@@ -1,108 +1,123 @@
 "use client";
 
 import { motion } from "framer-motion";
-import HeroMinimal from "@/components/blocks/HeroMinimal";
-import HoverEffect from "@/components/blocks/HoverEffect";
-import BentoGrid from "@/components/blocks/BentoGrid";
-import CTASplit from "@/components/blocks/CTASplit";
+import HeroSpotlight from "@/components/blocks/HeroSpotlight";
+import InfiniteMovingCards from "@/components/blocks/InfiniteMovingCards";
+import ParallaxScroll from "@/components/blocks/ParallaxScroll";
+import CTAGlass from "@/components/blocks/CTAGlass";
 
-const sectionAnim = {
-  initial: { opacity: 0, y: 18 },
-  whileInView: { opacity: 1, y: 0 },
-  transition: { duration: 0.7, ease: "easeOut" },
-  viewport: { once: true, amount: 0.25 }
+const section = {
+  hidden: { opacity: 0, y: 18 },
+  visible: { opacity: 1, y: 0 }
 };
 
 export default function PortfolioPage() {
   return (
-    <div className="surface">
-      <div className="relative">
-        <div className="absolute inset-0 hero-overlay pointer-events-none" />
-        <HeroMinimal
-          title="Projects & Collaborations"
-          subtitle="A selection of seasonal releases, event brew bars, and brand collaborations."
-          primaryCta={{ label: "Plan an Event", href: "/contact" }}
-          secondaryCta={{ label: "See Services", href: "/services" }}
-          image={{ src: "/images/product-3.png", alt: "Coffee bar setup" }}
-          theme="dark"
-          className="text-white"
-        />
-      </div>
+    <main className="bg-[#FEFAE0]">
+      <HeroSpotlight
+        title="Portfolio"
+        subtitle="Seasonal releases, café moments, and the craft behind the cup."
+        image={{ src: "/images/portfolio-1.png", alt: "Coffee bar scene" }}
+        primaryCta={{ label: "Wholesale Inquiry", href: "/contact" }}
+        secondaryCta={{ label: "See Pricing", href: "/pricing" }}
+      />
 
-      <motion.section {...sectionAnim} className="surface-low py-28">
-        <div className="container-page">
-          <HoverEffect
-            eyebrow="Highlights"
-            title="A few recent favorites"
-            description="Premium coffee moments—designed, dialed, and served with calm."
+      <motion.section
+        className="bg-[#F8F4DB]"
+        variants={section}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.25 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <div className="mx-auto max-w-6xl px-6 py-16">
+          <div className="mb-10">
+            <p className="text-xs tracking-[0.18em] uppercase text-[#462800] font-body">
+              Seasonal highlights
+            </p>
+            <h2 className="mt-3 text-3xl md:text-4xl font-heading text-[#1D1C0D]">
+              Recent drops & collaborations
+            </h2>
+          </div>
+
+          <InfiniteMovingCards
             items={[
               {
-                title: "Autumn Espresso Release",
-                description: "Chocolate-forward blend with citrus lift.",
-                image: "/images/product-1.png",
-                href: "/services"
+                title: "Ethiopia — Washed Heirloom",
+                description: "Jasmine, peach, bergamot. Clean and luminous.",
+                image: "/images/product-3.png"
               },
               {
-                title: "Studio Opening Brew Bar",
-                description: "On-site espresso + pour-over for 120 guests.",
-                image: "/images/product-2.png",
-                href: "/contact"
-              },
-              {
-                title: "Pastry Pairing Week",
-                description: "Seasonal pairings built around origin notes.",
-                image: "/images/product-1.png",
-                href: "/services"
-              }
-            ]}
-          />
-        </div>
-      </motion.section>
-
-      <motion.section {...sectionAnim} className="surface py-28">
-        <div className="container-page">
-          <BentoGrid
-            eyebrow="Behind the Scenes"
-            title="From roast curve to service flow"
-            description="We treat each release like an editorial story—taste, texture, and timing."
-            items={[
-              {
-                title: "Dial-In Notes",
-                description: "Recipe testing for sweetness and clarity.",
+                title: "Colombia — Honey Process",
+                description: "Red fruit, panela, cocoa. Plush sweetness.",
                 image: "/images/product-2.png"
               },
               {
-                title: "Service Design",
-                description: "Menus that keep lines moving without losing craft.",
-                image: "/images/product-3.png"
+                title: "Guatemala — Espresso Blend",
+                description: "Chocolate, toasted sugar, silky crema.",
+                image: "/images/product-1.png"
               },
               {
-                title: "Seasonal Visuals",
-                description: "Warm, earthy compositions that match the cup.",
-                image: "/images/hero.png"
-              },
-              {
-                title: "Collaboration Kits",
-                description: "Co-branded bags and tasting cards for partners.",
-                image: "/images/product-3.png"
+                title: "Café Pop-Up Bar",
+                description: "Mobile espresso for launches and private events.",
+                image: "/images/portfolio-4.png"
               }
+            ]}
+            speed="normal"
+          />
+        </div>
+      </motion.section>
+
+      <motion.section
+        className="bg-[#FEFAE0]"
+        variants={section}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <div className="mx-auto max-w-6xl px-6 py-16">
+          <div className="mb-10">
+            <p className="text-xs tracking-[0.18em] uppercase text-[#462800] font-body">
+              Gallery
+            </p>
+            <h2 className="mt-3 text-3xl md:text-4xl font-heading text-[#1D1C0D]">
+              The ritual, photographed
+            </h2>
+          </div>
+
+          <ParallaxScroll
+            images={[
+              "/images/portfolio-2.png",
+              "/images/portfolio-3.png",
+              "/images/portfolio-4.png",
+              "/images/portfolio-5.png",
+              "/images/portfolio-6.png",
+              "/images/portfolio-1.png"
             ]}
           />
         </div>
       </motion.section>
 
-      <motion.section {...sectionAnim} className="surface-low py-28">
-        <div className="container-page">
-          <CTASplit
-            eyebrow="Collaborate"
-            title="Let’s build a coffee moment together"
-            description="Events, office programs, and brand collaborations—tell us what you’re planning."
-            primaryCta={{ label: "Contact", href: "/contact" }}
-            secondaryCta={{ label: "Pricing", href: "/pricing" }}
-            image={{ src: "/images/product-1.png", alt: "Coffee cups on a counter" }}
+      <motion.section
+        className="bg-[#F8F4DB]"
+        variants={section}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.25 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <div className="mx-auto max-w-6xl px-6 py-16">
+          <CTAGlass
+            eyebrow="Bring Bean & Brew to your space"
+            title="Events & pop-ups with a premium brew bar"
+            description="From brand launches to weddings—our mobile setup delivers café-quality espresso anywhere."
+            primaryCta={{ label: "Book an Event", href: "/contact" }}
+            secondaryCta={{ label: "View Services", href: "/services" }}
+            image={{ src: "/images/portfolio-6.png", alt: "Coffee bar at an event" }}
           />
         </div>
       </motion.section>
-    </div>
+    </main>
   );
 }

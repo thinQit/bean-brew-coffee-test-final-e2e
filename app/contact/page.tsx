@@ -1,136 +1,120 @@
 "use client";
 
 import { motion } from "framer-motion";
-import HeroMinimal from "@/components/blocks/HeroMinimal";
+import HeroSpotlight from "@/components/blocks/HeroSpotlight";
 import ContactForm from "@/components/blocks/ContactForm";
-import FeaturesGrid from "@/components/blocks/FeaturesGrid";
-import CTASplit from "@/components/blocks/CTASplit";
+import BentoGrid from "@/components/blocks/BentoGrid";
 
-const sectionAnim = {
-  initial: { opacity: 0, y: 18 },
-  whileInView: { opacity: 1, y: 0 },
-  transition: { duration: 0.7, ease: "easeOut" },
-  viewport: { once: true, amount: 0.25 }
+const section = {
+  hidden: { opacity: 0, y: 18 },
+  visible: { opacity: 1, y: 0 }
 };
 
 export default function ContactPage() {
   return (
-    <div className="surface">
-      <div className="relative">
-        <div className="absolute inset-0 hero-overlay pointer-events-none" />
-        <HeroMinimal
-          title="Visit & Contact"
-          subtitle="Come for espresso, stay for the calm. Reach out for catering, office coffee, or subscription questions."
-          primaryCta={{ label: "Send a Message", href: "#form" }}
-          secondaryCta={{ label: "Services", href: "/services" }}
-          image={{ src: "/images/product-2.png", alt: "Coffee shop interior" }}
-          theme="dark"
-          className="text-white"
-        />
-      </div>
+    <main className="bg-[#FEFAE0]">
+      <HeroSpotlight
+        title="Contact & Hours"
+        subtitle="Questions, wholesale, subscriptions, or event coffee—send a note and we’ll respond quickly."
+        image={{ src: "/images/portfolio-5.png", alt: "Warm café interior" }}
+        primaryCta={{ label: "Send a Message", href: "#form" }}
+        secondaryCta={{ label: "View Services", href: "/services" }}
+      />
 
-      <motion.section {...sectionAnim} className="surface-low py-28" id="visit">
-        <div className="container-page">
-          <FeaturesGrid
-            eyebrow="Visit"
-            title="Hours, location, and what to expect"
-            description="A warm, editorial space with plenty of breathing room—perfect for a slow morning."
-            features={[
+      <motion.section
+        className="bg-[#F8F4DB]"
+        variants={section}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.25 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <div className="mx-auto max-w-6xl px-6 py-16">
+          <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
+            <div>
+              <p className="text-xs tracking-[0.18em] uppercase text-[#462800] font-body">
+                Visit
+              </p>
+              <h2 className="mt-3 text-3xl md:text-4xl font-heading text-[#1D1C0D]">
+                Come in for a pour-over flight
+              </h2>
+              <p className="mt-4 text-[#462800]">
+                <span className="font-semibold text-[#1D1C0D]">Hours:</span> Daily 7:00–6:00
+                <br />
+                <span className="font-semibold text-[#1D1C0D]">Location:</span> 123 Roastery Lane,
+                Your City
+              </p>
+
+              <div className="mt-8 rounded-2xl bg-background p-4">
+                <img
+                  src="/images/product-1.png"
+                  alt="Coffee cups and counter"
+                  className="h-56 w-full rounded-xl object-cover"
+                />
+              </div>
+            </div>
+
+            <div id="form" className="rounded-2xl bg-background p-6">
+              <ContactForm
+                title="Send a message"
+                description="Tell us what you’re looking for—menu questions, wholesale, subscriptions, or event coffee."
+                fields={[
+                  { name: "name", label: "Name", type: "text", required: true },
+                  { name: "email", label: "Email", type: "email", required: true },
+                  { name: "topic", label: "Topic", type: "text", required: false },
+                  { name: "message", label: "Message", type: "textarea", required: true }
+                ]}
+                submitLabel="Send"
+              />
+            </div>
+          </div>
+        </div>
+      </motion.section>
+
+      <motion.section
+        className="bg-[#FEFAE0]"
+        variants={section}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.25 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <div className="mx-auto max-w-6xl px-6 py-16">
+          <div className="mb-10">
+            <p className="text-xs tracking-[0.18em] uppercase text-[#462800] font-body">
+              What to order
+            </p>
+            <h2 className="mt-3 text-3xl md:text-4xl font-heading text-[#1D1C0D]">
+              First-visit favorites
+            </h2>
+          </div>
+
+          <BentoGrid
+            items={[
               {
-                title: "Hours",
-                description: "Mon–Fri 7:00–4:00 • Sat–Sun 8:00–4:00",
-                icon: "clock"
+                title: "Cappuccino",
+                description: "Sweet espresso, velvety foam, balanced finish.",
+                image: "/images/product-1.png"
               },
               {
-                title: "Location",
-                description: "123 Roast Lane, Your City",
-                icon: "map"
+                title: "V60 Pour-Over",
+                description: "Clean, aromatic, and origin-forward.",
+                image: "/images/product-3.png"
               },
               {
-                title: "Parking",
-                description: "Street parking + nearby garage options.",
-                icon: "car"
+                title: "Cold Brew Reserve",
+                description: "Smooth, low bitterness, toasted sugar notes.",
+                image: "/images/product-1.png"
               },
               {
-                title: "Accessibility",
-                description: "Step-free entry and accessible seating.",
-                icon: "accessibility"
+                title: "Croissant Pairing",
+                description: "Buttery layers that love espresso.",
+                image: "/images/product-3.png"
               }
             ]}
           />
         </div>
       </motion.section>
-
-      <motion.section {...sectionAnim} className="surface py-28" id="form">
-        <div className="container-page">
-          <ContactForm
-            eyebrow="Contact"
-            title="Send us a note"
-            description="Tell us what you’re planning—subscriptions, catering, or just a question about today’s rotation."
-            image={{ src: "/images/product-1.png", alt: "Coffee cup close-up" }}
-            fields={{
-              name: { label: "Name", placeholder: "Your name" },
-              email: { label: "Email", placeholder: "you@domain.com" },
-              subject: { label: "Subject", placeholder: "Catering, subscription, or question" },
-              message: { label: "Message", placeholder: "Share details (date, guest count, brew preferences)..." }
-            }}
-            submitLabel="Send Message"
-          />
-        </div>
-      </motion.section>
-
-      <motion.section {...sectionAnim} className="surface-low py-28" id="social">
-        <div className="container-page">
-          <CTASplit
-            eyebrow="Stay in the loop"
-            title="Seasonal drops and café notes"
-            description="Follow along for new origins, pastry pairings, and event brew bars."
-            primaryCta={{ label: "Newsletter", href: "#newsletter" }}
-            secondaryCta={{ label: "Portfolio", href: "/portfolio" }}
-            image={{ src: "/images/hero.png", alt: "Coffee being poured" }}
-          />
-        </div>
-      </motion.section>
-
-      <motion.section {...sectionAnim} className="surface py-28" id="newsletter">
-        <div className="container-page">
-          <div className="surface-card rounded-2xl p-10 md:p-14">
-            <div className="grid gap-8 md:grid-cols-2 md:items-center">
-              <div>
-                <h2 className="font-heading text-3xl md:text-4xl tracking-tight">
-                  Newsletter
-                </h2>
-                <p className="mt-3 text-base md:text-lg leading-relaxed text-black/80">
-                  Monthly notes on new origins, brew recipes, and café events.
-                </p>
-                <p className="mt-3 text-sm text-black/70" id="privacy">
-                  Privacy: we only email when we have something worth tasting.
-                </p>
-                <p className="mt-1 text-sm text-black/70" id="terms">
-                  Terms: unsubscribe anytime.
-                </p>
-              </div>
-              <form className="grid gap-3">
-                <input
-                  className="w-full rounded-xl bg-background px-4 py-3 text-black placeholder:text-black/50 outline-none ring-1 ring-black/10 focus:ring-2 focus:ring-[color:var(--ring)]"
-                  placeholder="you@domain.com"
-                  type="email"
-                />
-                <button
-                  type="button"
-                  className="rounded-xl px-5 py-3 text-white font-medium"
-                  style={{
-                    background:
-                      "radial-gradient(120% 120% at 20% 20%, #561922 0%, #722F37 55%, #722F37 100%)"
-                  }}
-                >
-                  Subscribe
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </motion.section>
-    </div>
+    </main>
   );
 }

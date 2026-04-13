@@ -1,66 +1,72 @@
 "use client";
 
 import { motion } from "framer-motion";
-import HeroMinimal from "@/components/blocks/HeroMinimal";
+import HeroSpotlight from "@/components/blocks/HeroSpotlight";
 import PricingTable from "@/components/blocks/PricingTable";
 import FAQAccordion from "@/components/blocks/FAQAccordion";
-import CTASplit from "@/components/blocks/CTASplit";
+import CTAGlass from "@/components/blocks/CTAGlass";
 
-const sectionAnim = {
-  initial: { opacity: 0, y: 18 },
-  whileInView: { opacity: 1, y: 0 },
-  transition: { duration: 0.7, ease: "easeOut" },
-  viewport: { once: true, amount: 0.25 }
+const section = {
+  hidden: { opacity: 0, y: 18 },
+  visible: { opacity: 1, y: 0 }
 };
 
 export default function PricingPage() {
   return (
-    <div className="surface">
-      <div className="relative">
-        <div className="absolute inset-0 hero-overlay pointer-events-none" />
-        <HeroMinimal
-          title="Subscriptions & Packages"
-          subtitle="Fresh rotations for home brewers, plus simple packages for offices and events."
-          primaryCta={{ label: "Choose a Plan", href: "#plans" }}
-          secondaryCta={{ label: "Contact", href: "/contact" }}
-          image={{ src: "/images/product-3.png", alt: "Coffee bag and cup" }}
-          theme="dark"
-          className="text-white"
-        />
-      </div>
+    <main className="bg-[#FEFAE0]">
+      <HeroSpotlight
+        title="Pricing"
+        subtitle="Subscriptions for home, wholesale for teams, and event coffee that feels like a boutique service."
+        image={{ src: "/images/product-2.png", alt: "Coffee cups on a bar" }}
+        primaryCta={{ label: "Start a Subscription", href: "/contact" }}
+        secondaryCta={{ label: "Wholesale Inquiry", href: "/contact" }}
+      />
 
-      <motion.section {...sectionAnim} className="surface-low py-28" id="plans">
-        <div className="container-page">
+      <motion.section
+        className="bg-[#F8F4DB]"
+        variants={section}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.25 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <div className="mx-auto max-w-6xl px-6 py-16">
+          <div className="mb-10">
+            <p className="text-xs tracking-[0.18em] uppercase text-[#462800] font-body">
+              Plans
+            </p>
+            <h2 className="mt-3 text-3xl md:text-4xl font-heading text-[#1D1C0D]">
+              Choose your ritual
+            </h2>
+          </div>
+
           <PricingTable
-            eyebrow="Bean Subscriptions"
-            title="Roaster’s picks, delivered"
-            description="Choose your cadence. We’ll send the freshest seasonal lots with brew notes."
             plans={[
               {
-                name: "Weekly Rotation",
+                name: "Home",
                 price: "$18",
-                interval: "per week",
-                description: "For daily brewers who love variety.",
-                features: ["250g bag", "Seasonal single-origin", "Brew notes"],
-                cta: { label: "Start", href: "/contact" },
+                period: "/bag",
+                description: "One 12oz bag. Fresh roast drops weekly.",
+                features: ["Choose filter or espresso", "Tasting notes card", "Roast-date transparency"],
+                cta: { label: "Get Home Plan", href: "/contact" },
+                highlighted: false
+              },
+              {
+                name: "Subscriber",
+                price: "$34",
+                period: "/month",
+                description: "Two bags monthly—curated and consistent.",
+                features: ["Priority seasonal releases", "Brew recipe suggestions", "Flexible schedule"],
+                cta: { label: "Subscribe", href: "/contact" },
                 highlighted: true
               },
               {
-                name: "Bi-Weekly",
-                price: "$20",
-                interval: "every 2 weeks",
-                description: "A steady ritual with room to explore.",
-                features: ["300g bag", "Seasonal single-origin", "Brew notes"],
-                cta: { label: "Start", href: "/contact" },
-                highlighted: false
-              },
-              {
-                name: "Monthly",
-                price: "$22",
-                interval: "per month",
-                description: "A gentle cadence for casual brewers.",
-                features: ["350g bag", "Seasonal single-origin", "Brew notes"],
-                cta: { label: "Start", href: "/contact" },
+                name: "Wholesale",
+                price: "Custom",
+                period: "",
+                description: "For offices, cafés, and hospitality partners.",
+                features: ["Training & recipes", "Consistent roast profiles", "Volume pricing"],
+                cta: { label: "Request Wholesale", href: "/contact" },
                 highlighted: false
               }
             ]}
@@ -68,45 +74,77 @@ export default function PricingPage() {
         </div>
       </motion.section>
 
-      <motion.section {...sectionAnim} className="surface py-28">
-        <div className="container-page">
-          <FAQAccordion
-            eyebrow="FAQ"
-            title="Subscription questions"
-            description="Shipping, grind, and swaps."
-            items={[
-              {
-                question: "Can I choose whole bean or ground?",
-                answer:
-                  "Yes. Tell us your brew method and we’ll grind accordingly—or keep it whole bean for maximum freshness."
-              },
-              {
-                question: "Can I pause or skip a delivery?",
-                answer:
-                  "Absolutely. Reach out any time and we’ll adjust your schedule."
-              },
-              {
-                question: "Do you offer decaf?",
-                answer:
-                  "Seasonally. When available, we’ll list it as an optional swap."
-              }
-            ]}
-          />
+      <motion.section
+        className="bg-[#FEFAE0]"
+        variants={section}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.25 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <div className="mx-auto max-w-6xl px-6 py-16">
+          <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
+            <div className="rounded-2xl bg-background p-4">
+              <img
+                src="/images/product-2.png"
+                alt="Coffee bag and cup"
+                className="h-72 w-full rounded-xl object-cover"
+              />
+            </div>
+
+            <div>
+              <p className="text-xs tracking-[0.18em] uppercase text-[#462800] font-body">
+                FAQs
+              </p>
+              <h2 className="mt-3 text-3xl md:text-4xl font-heading text-[#1D1C0D]">
+                Subscription & wholesale details
+              </h2>
+
+              <div className="mt-6">
+                <FAQAccordion
+                  items={[
+                    {
+                      question: "Can I pause or change my subscription?",
+                      answer:
+                        "Yes—pause, skip, or switch between filter and espresso at any time by messaging us."
+                    },
+                    {
+                      question: "Do you offer grind options?",
+                      answer:
+                        "Yes. Whole bean is recommended, but we can grind for common brew methods."
+                    },
+                    {
+                      question: "What does wholesale include?",
+                      answer:
+                        "We provide onboarding, brew recipes, and ongoing support to keep quality consistent."
+                    }
+                  ]}
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </motion.section>
 
-      <motion.section {...sectionAnim} className="surface-low py-28">
-        <div className="container-page">
-          <CTASplit
-            eyebrow="Need a custom quote?"
-            title="Events and offices are flexible"
-            description="Tell us your headcount, timing, and service style—we’ll tailor a package."
+      <motion.section
+        className="bg-[#F8F4DB]"
+        variants={section}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.25 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <div className="mx-auto max-w-6xl px-6 py-16">
+          <CTAGlass
+            eyebrow="Not sure what to pick?"
+            title="We’ll recommend the right plan"
+            description="Tell us how you brew and what flavors you love—we’ll match you to a roast and schedule."
             primaryCta={{ label: "Contact", href: "/contact" }}
-            secondaryCta={{ label: "Services", href: "/services" }}
-            image={{ src: "/images/product-2.png", alt: "Coffee being prepared" }}
+            secondaryCta={{ label: "View Services", href: "/services" }}
+            image={{ src: "/images/product-2.png", alt: "Roasted beans close-up" }}
           />
         </div>
       </motion.section>
-    </div>
+    </main>
   );
 }
